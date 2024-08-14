@@ -344,12 +344,13 @@ public class MainFile {
 
     private static void checkForWinner() {
         int max = 0;
-        for (int i : farbScores) {
-            if(i > max) {
-                max = i;
+        int maxIndex = 0;
+        for (int i = 0; i<farbScores.length; i++) {
+            if(farbScores[i] > max) {
+                max = farbScores[i];
+                maxIndex = i;
             }
         }
-
         if(max >= punktzahl) {
             ArrayList<Integer> liste = new ArrayList<>();
             for (int i : farbScores) {
@@ -362,12 +363,6 @@ public class MainFile {
                 System.exit(0);
             }
             else {
-                int maxIndex = 0;
-                for (int i = 0; i<farbScores.length; i++) {
-                    if(farbScores[i] == max) {
-                        maxIndex = i;
-                    }
-                }
                 JOptionPane.showMessageDialog(null, "Spieler " +spielerFarben[maxIndex] +" hat diese Runde gewonnen!", "Spieler " +spielerFarben[maxIndex] +" gewinnt", JOptionPane.INFORMATION_MESSAGE);
                 System.exit(0);
             }
