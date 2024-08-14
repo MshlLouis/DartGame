@@ -376,6 +376,7 @@ public class MainFile {
         Tast = new Tastatur();
 
         Bild.setTitle("Dartspiel");
+        Stift.setzeLinienBreite(3);
         modus = JOptionPane.showOptionDialog(null, "Bitte den Modus waehlen", "Modus waehlen", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, Modus, Modus[0]);
         Difficulty = JOptionPane.showOptionDialog(null, "Bitte die Schwierigkeit waehlen", "Schwierigkeit waehlen", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, Schwierigkeit, Schwierigkeit[0]);
 
