@@ -33,5 +33,5 @@ If you chose Multiplayer, there are 2 additional options:
 For Multiplayer the goal is to reach the amount of points specified, for Singleplayer the goal is to get as many points as possible (you lose once an arrow doesn't
 hit any point).
 
-Use mouse double click to fix the arrows position on screen
+Use mouse double click to fix the arrows position on screen  
 Use mouse single click to shoot the arrow in its pointing direction
