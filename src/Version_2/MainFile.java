@@ -192,38 +192,14 @@ public class MainFile {
         Stift.bewegeBis(0, 0);
     }
 
-    public static void Getscore() {
-        if(Stift.hPosition()>treffpunkt && Stift.vPosition()>100 && Stift.vPosition()<151 || Stift.hPosition()>treffpunkt && Stift.vPosition()>814 && Stift.vPosition()<865) {
-            lasthit=8;
+    public static int Getscore() {
+        for(int i = 8; i>0; i--) {
+            if(Stift.hPosition()>treffpunkt && Stift.vPosition()>100 +((8-i)*51) && Stift.vPosition()<151 +((8-i)*51) || Stift.hPosition()>treffpunkt && Stift.vPosition()>814 -((8-i)*51) && Stift.vPosition()<865 -((8-i)*51)) {
+                return i;
+            }
         }
-        else if(Stift.hPosition()>treffpunkt && Stift.vPosition()>151 && Stift.vPosition()<202 || Stift.hPosition()>treffpunkt && Stift.vPosition()>763 && Stift.vPosition()<814) {
-            lasthit=7;
-        }
-        else if(Stift.hPosition()>treffpunkt && Stift.vPosition()>202 && Stift.vPosition()<253 || Stift.hPosition()>treffpunkt && Stift.vPosition()>712 && Stift.vPosition()<763) {
-            lasthit=6;
-        }
-        else if(Stift.hPosition()>treffpunkt && Stift.vPosition()>253 && Stift.vPosition()<304 || Stift.hPosition()>treffpunkt && Stift.vPosition()>661 && Stift.vPosition()<712) {
-            lasthit=5;
-        }
-        else if(Stift.hPosition()>treffpunkt && Stift.vPosition()>304 && Stift.vPosition()<355 || Stift.hPosition()>treffpunkt && Stift.vPosition()>610 && Stift.vPosition()<661) {
-            lasthit=4;
-        }
-        else if(Stift.hPosition()>treffpunkt && Stift.vPosition()>355 && Stift.vPosition()<406 || Stift.hPosition()>treffpunkt && Stift.vPosition()>559 && Stift.vPosition()<610) {
-            lasthit=3;
-        }
-        else if(Stift.hPosition()>treffpunkt && Stift.vPosition()>406 && Stift.vPosition()<457 || Stift.hPosition()>treffpunkt && Stift.vPosition()>508 && Stift.vPosition()<559) {
-            lasthit=2;
-        }
-        else if(Stift.hPosition()>treffpunkt && Stift.vPosition()>457 && Stift.vPosition()<508) {
-            lasthit=1;
-        }
-        else {
-            Gameover=true;
-        }
-
-        score+=lasthit;
-        loescheScheibe();
-        schreibScore();
+        Gameover = true;
+        return 0;
     }
 
     public static void Zielpunktzahl() {
@@ -321,7 +297,11 @@ public class MainFile {
             Stift.bewegeUm(-49.9);
         }
         Pfeil();
-        Getscore();
+
+        lasthit = Getscore();
+        score += lasthit;
+        loescheScheibe();
+        schreibScore();
     }
 
     private static void checkForWinner() {
