@@ -29,14 +29,14 @@ public class MainFile {
     static double koordy = 100;
     static double koordx = 150;
     static int Grad = 0;
+    static int wuerfe = 0;
     static boolean runter = true;
     static boolean Gameover = false;
-    static boolean [] SpielerBoolean = {true, false, false, false};
+    static int playersTurn = 0;
     static int [] Farben = {1,2,3,4,5,6,7,8,9,10};
     static String [] spielerFarben = {"Blau", "Rot", "Gr\u00FCn","Schwarz"};
     static int [] spielerFarbenInt = {1, 10, 5, 0};
     static int [] scoreBoardColorCoords = {1570, 1570, 1570, 1630};
-    static int [] farbWuerfe = {0, 0, 0, 0};           //blau, rot, gruen, schwarz
     static int [] farbScores = {0, 0, 0, 0};           //blau, rot, gruen, schwarz
 
     public static void Pfeil() {
@@ -85,17 +85,8 @@ public class MainFile {
         if(modus==0) {
             Stift.setzeFarbe(Farben[(int)(Math.random()*9)]);
         }
-        else if(modus==1 && SpielerBoolean[0]) {
-            Stift.setzeFarbe(Farbe.BLAU);
-        }
-        else if(modus==1 && SpielerBoolean[1]) {
-            Stift.setzeFarbe(Farbe.ROT);
-        }
-        else if(modus==1 && SpielerBoolean[2]) {
-            Stift.setzeFarbe(Farbe.GRUEN);
-        }
-        else if(modus==1 && SpielerBoolean[3]) {
-            Stift.setzeFarbe(Farbe.SCHWARZ);
+        else {
+            Stift.setzeFarbe(spielerFarbenInt[playersTurn]);
         }
     }
 
@@ -244,13 +235,8 @@ public class MainFile {
     }
 
     private static void oneMultiplayerThrow(int farbe) throws InterruptedException {
-        while(farbWuerfe[farbe] < 3) {
-            SpielerBoolean[0] = false;
-            SpielerBoolean[1] = false;
-            SpielerBoolean[2] = false;
-            SpielerBoolean[3] = false;
-
-            SpielerBoolean[farbe] = true;
+        while(wuerfe < 3) {
+            playersTurn = farbe;
 
             oneThrow(farbe);
 
@@ -259,13 +245,9 @@ public class MainFile {
             schreibMultiScore();
             Zielpunktzahl();
             lasthit=0;
-            farbWuerfe[farbe]++;
+            wuerfe++;
         }
-
-        farbWuerfe[0] = 0;
-        farbWuerfe[1] = 0;
-        farbWuerfe[2] = 0;
-        farbWuerfe[3] = 0;
+        wuerfe = 0;
     }
 
     private static void oneThrow(int farbe) throws InterruptedException {
@@ -409,7 +391,6 @@ public class MainFile {
 
             schreibMultiScore();
             Zielpunktzahl();
-
             JOptionPane.showMessageDialog(null, "Der blaue Spieler beginnt! Jeder Spieler hat 3 W\u00FCrfe!\nAlle 3 Runden wird das Bild zur\u00FCckgesetzt f\u00FCr eine bessere Performance");
 
             while(farbScores[0]<=punktzahl && farbScores[1]<=punktzahl && farbScores[2] <=punktzahl && farbScores[3]<=punktzahl) {
